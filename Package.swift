@@ -36,6 +36,10 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("privateHeaders"),
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
+            ],
+            swiftSettings: [
+                // Disable module interface emission to avoid SwiftVerifyEmittedModuleInterface errors
+                .unsafeFlags(["-no-verify-emitted-module-interface"])
             ]
         ),
         .target(
